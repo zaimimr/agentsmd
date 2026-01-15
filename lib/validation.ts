@@ -6,29 +6,25 @@ export const taskStatusSchema = z.enum(['todo', 'in-progress', 'done'])
 // Task priority enum
 export const taskPrioritySchema = z.enum(['low', 'medium', 'high'])
 
-// TODO: Create task validation schema
-// This should include: title (1-100 chars), description (optional),
-// status, priority, and optional dueDate
-//
-// export const createTaskSchema = z.object({
-//   title: z.string().min(1).max(100),
-//   description: z.string().optional(),
-//   status: taskStatusSchema,
-//   priority: taskPrioritySchema,
-//   dueDate: z.date().optional(),
-// })
+export const createTaskSchema = z.object({
+  title: z.string().min(1).max(100),
+  description: z.string().optional(),
+  status: taskStatusSchema,
+  priority: taskPrioritySchema,
+  dueDate: z.coerce.date().optional(),
+})
 
-// TODO: Create update task schema
-// All fields should be optional except id
-//
-// export const updateTaskSchema = z.object({
-//   id: z.string(),
-//   title: z.string().min(1).max(100).optional(),
-//   description: z.string().optional(),
-//   status: taskStatusSchema.optional(),
-//   priority: taskPrioritySchema.optional(),
-//   dueDate: z.date().optional(),
-// })
+export const updateTaskSchema = z.object({
+  id: z.string().min(1),
+  title: z.string().min(1).max(100).optional(),
+  description: z.string().optional(),
+  status: taskStatusSchema.optional(),
+  priority: taskPrioritySchema.optional(),
+  dueDate: z.coerce.date().optional(),
+})
+
+export type CreateTaskSchema = z.infer<typeof createTaskSchema>
+export type UpdateTaskSchema = z.infer<typeof updateTaskSchema>
 
 // Example validation helper
 export function validateData<T>(schema: z.ZodSchema<T>, data: unknown) {
