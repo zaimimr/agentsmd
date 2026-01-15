@@ -1,3 +1,6 @@
+'use client'
+
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -6,9 +9,12 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
+import { TaskForm } from "@/components/TaskForm";
 import Link from "next/link";
 
 export default function NewTaskPage() {
+  const router = useRouter();
+
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <div>
@@ -26,23 +32,10 @@ export default function NewTaskPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {/* TODO: Integrate TaskForm component here */}
-          {/* Example: <TaskForm onSuccess={(task) => router.push(`/tasks/${task.id}`)} /> */}
-
-          <div className="space-y-4 text-center py-8">
-            <p className="text-muted-foreground">
-              TaskForm component needs to be implemented
-            </p>
-            <p className="text-sm text-muted-foreground">
-              See TODO.md for implementation guidance
-            </p>
-          </div>
-
-          {/* TODO: Add validation */}
-          {/* - Use Zod schema from lib/validation.ts */}
-          {/* - Show inline error messages */}
-          {/* - Disable submit during API call */}
-          {/* - Handle API errors gracefully */}
+          <TaskForm
+            onSuccess={(task) => router.push(`/tasks/${task.id}`)}
+            onCancel={() => router.push('/tasks')}
+          />
         </CardContent>
       </Card>
 
