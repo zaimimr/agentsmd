@@ -129,5 +129,8 @@ Instead of one AI doing everything, delegate to focused agents:
 - **Testing**: Vitest 2.1 + React Testing Library
 - **Data**: In-memory (no database needed)
 
+## Resources
+- **Claude Plugins**: [github.com/claude-code/plugins](https://github.com/anthropics/claude-code/tree/main/plugins)
+
 
 **Ready to start?** Open [TODO.md](./TODO.md) and begin with Task 0! 🚀

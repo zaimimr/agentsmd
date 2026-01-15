@@ -20,7 +20,7 @@ Review the task routes see the error handling pattern, then add try-catch blocks
 
 ### Task 3
 ```
-Create TaskForm component with validation
+Create TaskForm component with validation and add it to `/tasks/new`
 ```
 
 ### Task 4
