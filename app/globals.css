@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Custom theme based on Blank Konferanse */
+    /* Gul (tekst): #FFFCB6 */
+    /* Grå (bakgrunn): #272D2A */
+    /* Blå (knapper/viktige elementer): #0000FF */
+    --background: #272D2A;
+    --foreground: #FFFCB6;
+    --card: #2f3633;
+    --card-foreground: #FFFCB6;
+    --popover: #272D2A;
+    --popover-foreground: #FFFCB6;
+    --primary: #0000FF;
+    --primary-foreground: #FFFCB6;
+    --secondary: #3a4340;
+    --secondary-foreground: #FFFCB6;
+    --muted: #3a4340;
+    --muted-foreground: #c4c1a0;
+    --accent: #0000FF;
+    --accent-foreground: #FFFCB6;
+    --destructive: #ef4444;
+    --destructive-foreground: #FFFCB6;
+    --border: #3a4340;
+    --input: #3a4340;
+    --ring: #0000FF;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Same theme for dark mode */
+    --background: #272D2A;
+    --foreground: #FFFCB6;
+    --card: #2f3633;
+    --card-foreground: #FFFCB6;
+    --popover: #272D2A;
+    --popover-foreground: #FFFCB6;
+    --primary: #0000FF;
+    --primary-foreground: #FFFCB6;
+    --secondary: #3a4340;
+    --secondary-foreground: #FFFCB6;
+    --muted: #3a4340;
+    --muted-foreground: #c4c1a0;
+    --accent: #0000FF;
+    --accent-foreground: #FFFCB6;
+    --destructive: #ef4444;
+    --destructive-foreground: #FFFCB6;
+    --border: #3a4340;
+    --input: #3a4340;
+    --ring: #0000FF;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
