@@ -7,51 +7,67 @@ interface RouteContext {
 }
 
 export async function GET(_request: Request, context: RouteContext) {
-  // TODO: Add try-catch error handling
-  // Should return 404 if task not found, 500 for server errors
+  try {
+    const { id } = await context.params
+    const task = await db.getTask(id)
 
-  const { id } = await context.params
-  const task = await db.getTask(id)
+    if (!task) {
+      return NextResponse.json({ error: 'Task not found' }, { status: 404 })
+    }
 
-  if (!task) {
-    return NextResponse.json({ error: 'Task not found' }, { status: 404 })
+    return NextResponse.json(task)
+  } catch (error) {
+    console.error('Failed to fetch task:', error)
+    return NextResponse.json(
+      { error: 'Failed to fetch task' },
+      { status: 500 }
+    )
   }
-
-  return NextResponse.json(task)
 }
 
 export async function PUT(request: Request, context: RouteContext) {
-  // TODO: Add try-catch error handling
-  // TODO: Add validation using Zod schema
-  // Should return 400 for validation errors, 404 if not found, 500 for server errors
+  try {
+    const { id } = await context.params
+    const body = await request.json()
 
-  const { id } = await context.params
-  const body = await request.json()
+    // TODO: Add validation using Zod schema
 
-  const updateInput: UpdateTaskInput = {
-    id,
-    ...body,
+    const updateInput: UpdateTaskInput = {
+      id,
+      ...body,
+    }
+
+    const task = await db.updateTask(updateInput)
+
+    if (!task) {
+      return NextResponse.json({ error: 'Task not found' }, { status: 404 })
+    }
+
+    return NextResponse.json(task)
+  } catch (error) {
+    console.error('Failed to update task:', error)
+    return NextResponse.json(
+      { error: 'Failed to update task' },
+      { status: 500 }
+    )
   }
-
-  const task = await db.updateTask(updateInput)
-
-  if (!task) {
-    return NextResponse.json({ error: 'Task not found' }, { status: 404 })
-  }
-
-  return NextResponse.json(task)
 }
 
 export async function DELETE(_request: Request, context: RouteContext) {
-  // TODO: Add try-catch error handling
-  // Should return 404 if task not found, 500 for server errors
+  try {
+    const { id } = await context.params
+    const success = await db.deleteTask(id)
 
-  const { id } = await context.params
-  const success = await db.deleteTask(id)
+    if (!success) {
+      return NextResponse.json({ error: 'Task not found' }, { status: 404 })
+    }
 
-  if (!success) {
-    return NextResponse.json({ error: 'Task not found' }, { status: 404 })
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    console.error('Failed to delete task:', error)
+    return NextResponse.json(
+      { error: 'Failed to delete task' },
+      { status: 500 }
+    )
   }
-
-  return NextResponse.json({ success: true })
 }
