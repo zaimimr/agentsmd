@@ -25,7 +25,7 @@ Create TaskForm component with validation
 
 ### Task 4
 ```
-Using `/feature` create the TaskFilter component with dropdowns for status and priority
+Using `/feature` create the TaskFilter component with dropdowns for status and priority and implement it in /tasks
 ```
 
 ### Task 5

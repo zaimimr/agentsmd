@@ -1,16 +1,10 @@
 import { db } from "@/lib/db";
-import { TaskList } from "@/components/TaskList";
+import { TaskListWithFilter } from "@/components/TaskListWithFilter";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default async function TasksPage() {
   const tasks = await db.getTasks();
-
-  // TODO: Add task filtering
-  // Should integrate with TaskFilter component to filter by:
-  // - Status (all, todo, in-progress, done)
-  // - Priority (all, low, medium, high)
-  // Note: This will require converting to a client component or using URL search params
 
   return (
     <div className="space-y-6">
@@ -26,10 +20,7 @@ export default async function TasksPage() {
         </Link>
       </div>
 
-      {/* TODO: Add TaskFilter component here */}
-      {/* Example: <TaskFilter onFilterChange={handleFilterChange} /> */}
-
-      <TaskList tasks={tasks} />
+      <TaskListWithFilter tasks={tasks} />
     </div>
   );
 }
